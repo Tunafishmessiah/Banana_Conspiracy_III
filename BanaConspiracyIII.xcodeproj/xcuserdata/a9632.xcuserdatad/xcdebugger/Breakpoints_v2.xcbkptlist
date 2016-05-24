@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BanaConspiracyIII/Actor.swift"
+            timestampString = "485803042.798973"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "Actor(_:_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BanaConspiracyIII/Pawn.swift"
+            timestampString = "485804596.057272"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "Pawn"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BanaConspiracyIII/Player.swift"
+            timestampString = "485807003.061905"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "Player"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BanaConspiracyIII.Player.PlayerAtlas.getter : ObjectiveC.SKTextureAtlas"
+                  moduleName = "BanaConspiracyIII"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a9632/Desktop/Bananas/BanaConspiracyIII/Banana_Conspiracy_III/BanaConspiracyIII/Player.swift"
+                  timestampString = "485807955.372618"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BanaConspiracyIII.Player.PlayerAtlas.setter : ObjectiveC.SKTextureAtlas"
+                  moduleName = "BanaConspiracyIII"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a9632/Desktop/Bananas/BanaConspiracyIII/Banana_Conspiracy_III/BanaConspiracyIII/Player.swift"
+                  timestampString = "485807955.37277"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BanaConspiracyIII.Player.init (BanaConspiracyIII.Player.Type)() -&gt; BanaConspiracyIII.Player"
+                  moduleName = "BanaConspiracyIII"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a9632/Desktop/Bananas/BanaConspiracyIII/Banana_Conspiracy_III/BanaConspiracyIII/Player.swift"
+                  timestampString = "485807955.37307"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E0B199B31CF4A3B400093750 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B199B21CF4A3B400093750 /* Actor.swift */; };
+		E0B199B51CF4A7F600093750 /* Pawn.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B199B41CF4A7F600093750 /* Pawn.swift */; };
+		E0B199B71CF4B0DA00093750 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B199B61CF4B0DA00093750 /* Player.swift */; };
+		E0B199BB1CF4B74200093750 /* Player1.png in Resources */ = {isa = PBXBuildFile; fileRef = E0B199B91CF4B74200093750 /* Player1.png */; };
+		E0B199BC1CF4B74200093750 /* Player0.png in Resources */ = {isa = PBXBuildFile; fileRef = E0B199BA1CF4B74200093750 /* Player0.png */; };
 		E0D8DBCF1CF49EB700115390 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D8DBCE1CF49EB700115390 /* AppDelegate.swift */; };
 		E0D8DBD11CF49EB700115390 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E0D8DBD01CF49EB700115390 /* GameScene.sks */; };
 		E0D8DBD31CF49EB700115390 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D8DBD21CF49EB700115390 /* GameScene.swift */; };
@@ -28,6 +33,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E0B199B21CF4A3B400093750 /* Actor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actor.swift; sourceTree = "<group>"; };
+		E0B199B41CF4A7F600093750 /* Pawn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pawn.swift; sourceTree = "<group>"; };
+		E0B199B61CF4B0DA00093750 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		E0B199B91CF4B74200093750 /* Player1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Player1.png; sourceTree = "<group>"; };
+		E0B199BA1CF4B74200093750 /* Player0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Player0.png; sourceTree = "<group>"; };
 		E0D8DBC91CF49EB700115390 /* BanaConspiracyIII.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BanaConspiracyIII.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0D8DBCD1CF49EB700115390 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0D8DBCE1CF49EB700115390 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +70,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E0B199B81CF4B74200093750 /* player.atlas */ = {
+			isa = PBXGroup;
+			children = (
+				E0B199B91CF4B74200093750 /* Player1.png */,
+				E0B199BA1CF4B74200093750 /* Player0.png */,
+			);
+			name = player.atlas;
+			path = Images;
+			sourceTree = "<group>";
+		};
 		E0D8DBC01CF49EB700115390 = {
 			isa = PBXGroup;
 			children = (
@@ -81,7 +101,9 @@
 		E0D8DBCB1CF49EB700115390 /* BanaConspiracyIII */ = {
 			isa = PBXGroup;
 			children = (
+				E0B199B81CF4B74200093750 /* player.atlas */,
 				E0D8DBCE1CF49EB700115390 /* AppDelegate.swift */,
+				E0B199B21CF4A3B400093750 /* Actor.swift */,
 				E0D8DBD01CF49EB700115390 /* GameScene.sks */,
 				E0D8DBD21CF49EB700115390 /* GameScene.swift */,
 				E0D8DBD41CF49EB700115390 /* GameViewController.swift */,
@@ -89,6 +111,8 @@
 				E0D8DBD91CF49EB700115390 /* Images.xcassets */,
 				E0D8DBDB1CF49EB700115390 /* LaunchScreen.xib */,
 				E0D8DBCC1CF49EB700115390 /* Supporting Files */,
+				E0B199B41CF4A7F600093750 /* Pawn.swift */,
+				E0B199B61CF4B0DA00093750 /* Player.swift */,
 			);
 			path = BanaConspiracyIII;
 			sourceTree = "<group>";
@@ -200,7 +224,9 @@
 			files = (
 				E0D8DBDD1CF49EB700115390 /* LaunchScreen.xib in Resources */,
 				E0D8DBDA1CF49EB700115390 /* Images.xcassets in Resources */,
+				E0B199BC1CF4B74200093750 /* Player0.png in Resources */,
 				E0D8DBD11CF49EB700115390 /* GameScene.sks in Resources */,
+				E0B199BB1CF4B74200093750 /* Player1.png in Resources */,
 				E0D8DBD81CF49EB700115390 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,6 +248,9 @@
 				E0D8DBD31CF49EB700115390 /* GameScene.swift in Sources */,
 				E0D8DBD51CF49EB700115390 /* GameViewController.swift in Sources */,
 				E0D8DBCF1CF49EB700115390 /* AppDelegate.swift in Sources */,
+				E0B199B51CF4A7F600093750 /* Pawn.swift in Sources */,
+				E0B199B71CF4B0DA00093750 /* Player.swift in Sources */,
+				E0B199B31CF4A3B400093750 /* Actor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +448,7 @@
 				E0D8DBEE1CF49EB700115390 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E0D8DBEF1CF49EB700115390 /* Build configuration list for PBXNativeTarget "BanaConspiracyIIITests" */ = {
 			isa = XCConfigurationList;
@@ -427,6 +457,7 @@
 				E0D8DBF11CF49EB700115390 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
