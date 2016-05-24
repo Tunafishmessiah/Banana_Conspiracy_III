@@ -12,7 +12,6 @@ import SpriteKit
 class Player : Pawn
 {
     var AttackTimer = CGFloat()
-    var PlayerAtlas : SKTextureAtlas = SKTextureAtlas(named: "player.atlas")
     var PlayerSprites : [SKTexture] = []
     var Resting = Bool()
     
@@ -25,13 +24,25 @@ class Player : Pawn
         self.Pawn("Player", CGPoint(x: 1, y: 1), false, 10)
         self.Node.position = CGPoint(x: screenSize.width/2 - self.Node.size.width/2 , y: screenSize.height/10 + self.Node.size.height)
         self.Resting = true
+        
     }
     
-    override func Attack() {
+    public func Attack(attackRight : Bool) {
         AttackTimer = 20
         Resting = false
         
-        //Do the random attack to the side it's clicked on
+        var nextAttack = arc4random_uniform(1)
+        self.Node.texture = PlayerSprites[Int(nextAttack)]
+        if !attackRight && self.Node.xScale > 0
+        {
+            self.Node.xScale *= -1
+        }
+        else if attackRight && self.Node.xScale < 0
+        {
+            self.Node.xScale *= -1
+        }
+        
+        //Do the random attack to the side it's clicked on
 
     }
     override func Update() {
