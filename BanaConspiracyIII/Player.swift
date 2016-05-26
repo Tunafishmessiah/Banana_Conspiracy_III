@@ -31,7 +31,9 @@ class Player : Pawn
         AttackTimer = 20
         Resting = false
         
-        var nextAttack = arc4random_uniform(1)
+        //Escolher entre os diferentes ataques, sendo que o numero dentro do
+        //random deve ser NumAtaques - 1
+        let nextAttack = arc4random_uniform(4)
         self.Node.texture = PlayerSprites[Int(nextAttack)]
         if !attackRight && self.Node.xScale > 0
         {
