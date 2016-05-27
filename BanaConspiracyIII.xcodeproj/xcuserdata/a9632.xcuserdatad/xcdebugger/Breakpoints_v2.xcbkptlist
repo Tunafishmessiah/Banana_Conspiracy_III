@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BanaConspiracyIII/Actor.swift"
-            timestampString = "485803042.798973"
+            filePath = "BanaConspiracyIII/Enemy.swift"
+            timestampString = "486057385.561444"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "Actor(_:_:)"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "Update(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,14 +25,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BanaConspiracyIII/Pawn.swift"
-            timestampString = "485804596.057272"
+            filePath = "BanaConspiracyIII/Enemy.swift"
+            timestampString = "486057386.34673"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "Pawn"
-            landmarkType = "3">
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "Update(_:)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -21,6 +21,8 @@
 		E0D8DBDA1CF49EB700115390 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0D8DBD91CF49EB700115390 /* Images.xcassets */; };
 		E0D8DBDD1CF49EB700115390 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0D8DBDB1CF49EB700115390 /* LaunchScreen.xib */; };
 		E0D8DBE91CF49EB700115390 /* BanaConspiracyIIITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D8DBE81CF49EB700115390 /* BanaConspiracyIIITests.swift */; };
+		E0E58E891CF88EF000D118A6 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E58E881CF88EF000D118A6 /* GameManager.swift */; };
+		E0E58E8B1CF8942100D118A6 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E58E8A1CF8942100D118A6 /* Enemy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 		E0D8DBE21CF49EB700115390 /* BanaConspiracyIIITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BanaConspiracyIIITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0D8DBE71CF49EB700115390 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0D8DBE81CF49EB700115390 /* BanaConspiracyIIITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanaConspiracyIIITests.swift; sourceTree = "<group>"; };
+		E0E58E881CF88EF000D118A6 /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		E0E58E8A1CF8942100D118A6 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +120,8 @@
 				E0B199B41CF4A7F600093750 /* Pawn.swift */,
 				E0B199B61CF4B0DA00093750 /* Player.swift */,
 				44E321C11CF7BABE00A0AD46 /* Floor.swift */,
+				E0E58E881CF88EF000D118A6 /* GameManager.swift */,
+				E0E58E8A1CF8942100D118A6 /* Enemy.swift */,
 			);
 			path = BanaConspiracyIII;
 			sourceTree = "<group>";
@@ -254,6 +260,8 @@
 				E0D8DBCF1CF49EB700115390 /* AppDelegate.swift in Sources */,
 				44E321C21CF7BABE00A0AD46 /* Floor.swift in Sources */,
 				E0B199B51CF4A7F600093750 /* Pawn.swift in Sources */,
+				E0E58E8B1CF8942100D118A6 /* Enemy.swift in Sources */,
+				E0E58E891CF88EF000D118A6 /* GameManager.swift in Sources */,
 				E0B199B71CF4B0DA00093750 /* Player.swift in Sources */,
 				E0B199B31CF4A3B400093750 /* Actor.swift in Sources */,
 			);
