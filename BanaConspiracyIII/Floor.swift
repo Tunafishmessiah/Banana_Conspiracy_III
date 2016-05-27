@@ -9,8 +9,29 @@
 import Foundation
 import SpriteKit
 
-class Fooh : Actor
+class Floor : Actor
 {
-    func Fooh ()
-    {}
+    
+    func Floor (player : Player)
+    {
+        
+        self.Actor("Floor", CGPointMake(1,1))
+    }
+    
+    public func MoveFloors(attackToRight : Bool)
+    {
+        //Se o Nerd estiver a atacar para a direita, o campo e tudo o resto deve mover-se para a esquerda
+        //logo a coordenada X deve diminuir
+        if(attackToRight)
+        {
+            self.Node.position = CGPoint(x: self.Node.position.x - 20,y: self.Node.position.y)
+        }
+        //Ja se o ataque for para a esquerda, deve-se mover o mundo para a direita
+        else
+        {
+            self.Node.position = CGPoint(x: self.Node.position.x + 20,y: self.Node.position.y)
+        }
+    }
+    
+    
 }

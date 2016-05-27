@@ -27,7 +27,7 @@ class Player : Pawn
         
     }
     
-    public func Attack(attackRight : Bool) {
+    public func Attack(attackRight : Bool, moveFloor : Floor) {
         AttackTimer = 20
         Resting = false
         
@@ -43,6 +43,7 @@ class Player : Pawn
         {
             self.Node.xScale *= -1
         }
+        
         
         //Do the random attack to the side it's clicked on
 
