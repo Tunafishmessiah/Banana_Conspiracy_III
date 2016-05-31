@@ -1,23 +1,43 @@
-//
-//  MovementManager.swift
-//  BanaConspiracyIII
-//
-//  Created by a9632 - Pedro Carvalho on 27/05/16.
-//  Copyright (c) 2016 a9632 - Pedro Carvalho. All rights reserved.
+// Esta classe deve conter os inimigos e coisas como o background e o chão
+// Para ser mais facil de mover todos os objectos dentro do mapa.
 
-//Esta classe deve conter os inimigos e coisas como o background e o chão
-//para ser mais facil de mover todos os objectos dentro do mapa.
+
 
 import Foundation
-
+import SpriteKit
 class GameManager {
     
+    //Contem todos os inimigos da cena para uma gestão mais facil
+    var Enemies = [Enemy]()
+    
+    var Background1 = Background()
+    var Background2 = Background()
+    
+    var Floor1 = Floor()
+    var Floor2 = Floor()
+    
+    //esta variavel vai servir para mover tudo na cena conforme o que o jogador andar com cada ataque.
+    //Como tudo tem de se mover a mesma velocidade, essa variavel é controlada aqui
+    var Speed = CGFloat()
+    
+    var ScreenSize = CGPoint()
     
     
-    func GameManager( level : Int)
+    func GameManager( level : Int, screenSize : CGPoint)
     {
+        
+        self.ScreenSize = screenSize
+        // O background e o chão vão andar a velocidades diferentes para dar um efeito mais engraçado
+        //mas recebem o mesmo valor de Speed
+        self.Background1.Background(self.Speed)
+        self.Background2.Background(self.Speed)
+        
+        self.Background1.Node.position = CGPointMake(self.ScreenSize.x/2, self.ScreenSize.y/2)
+        self.Background2.Node.position = CGPointMake((self.ScreenSize.x/2) + self.Background2.Node.size.width, self.ScreenSize.y/2 )
+        
         //Quanto maior o nivel, mais inimigos vai dar spawn
         //Ou seja, o delay que o spawn tem é menor
+        
         
         
     }

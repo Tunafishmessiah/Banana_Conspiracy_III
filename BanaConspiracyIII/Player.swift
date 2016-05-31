@@ -35,6 +35,8 @@ class Player : Pawn
         //random deve ser NumAtaques - 1
         let nextAttack = arc4random_uniform(4)
         self.Node.texture = PlayerSprites[Int(nextAttack)]
+        
+        //Verifica se o jogador ja está virado para o lado e vira-o se não estiver
         if !attackRight && self.Node.xScale > 0
         {
             self.Node.xScale *= -1
@@ -45,7 +47,7 @@ class Player : Pawn
         }
         
         
-        //Do the random attack to the side it's clicked on
+        //Do the random attack to the side it's clicked on
 
     }
     override func Update() {

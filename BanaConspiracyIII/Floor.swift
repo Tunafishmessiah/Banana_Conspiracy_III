@@ -11,25 +11,27 @@ import SpriteKit
 
 class Floor : Actor
 {
+    var Speed = CGFloat()
     
-    func Floor (player : Player)
+    func Floor (speed : CGFloat)
     {
+        self.Speed = speed
         
         self.Actor("Floor", CGPointMake(1,1))
     }
     
-    public func MoveFloors(attackToRight : Bool)
+    public func MoveFloors(moveRight : Bool)
     {
         //Se o Nerd estiver a atacar para a direita, o campo e tudo o resto deve mover-se para a esquerda
         //logo a coordenada X deve diminuir
-        if(attackToRight)
+        if(moveRight)
         {
-            self.Node.position = CGPoint(x: self.Node.position.x - 20,y: self.Node.position.y)
+            self.Node.position = CGPoint(x: self.Node.position.x - self.Speed,y: self.Node.position.y)
         }
         //Ja se o ataque for para a esquerda, deve-se mover o mundo para a direita
         else
         {
-            self.Node.position = CGPoint(x: self.Node.position.x + 20,y: self.Node.position.y)
+            self.Node.position = CGPoint(x: self.Node.position.x + self.Speed,y: self.Node.position.y)
         }
     }
     
