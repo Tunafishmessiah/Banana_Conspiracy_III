@@ -12,11 +12,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     public var gameManager = GameManager()
     
-    override func didMoveToView(view: SKView) {
-        gameManager.GameManager(<#T##level: Int##Int#>, screenSize: <#T##CGPoint#>)
+    public var level = 1
+    
+    override func didMoveToView(view: SKView)
+    {
+        gameManager.GameManager(self.level, screenSize: CGPointMake(self.size.width, self.size.height))
+        
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
+    {
+        
     }
    
     override func update(currentTime: CFTimeInterval) {

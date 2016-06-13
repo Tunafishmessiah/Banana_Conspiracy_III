@@ -40,9 +40,34 @@ class GameManager {
     }
     func Update()
     {
-        var aux : Int = Enemies.count
+        UpdateEnemies()
+        //O chao, o background e o player nao precisam de update, pois sao estaticos
+    
+    }
+    
+    func UpdateEnemies()
+    {
+        //Ve o index de quais inimigos estao mortos
+        var deletedEnemies = [Int]()
+        for aux in 0 ... Enemies.count-1
+        {
+            if (Enemies[aux].HP <= 0)
+            {
+                deletedEnemies.append(aux)
+            }
+        }
         
-        for aux
+        //Elimina-os da cena
+        for deleteIndex in deletedEnemies
+        {
+            Enemies.removeAtIndex(deleteIndex)
+        }
+        
+        //Dá update aos vivos
+        for enemy in Enemies
+        {
+            enemy.Update()
+        }
     }
     
 }
