@@ -43,10 +43,10 @@ class GameManager {
         
         //Quanto maior o nivel, mais inimigos vai dar spawn
         //Ou seja, o delay que o spawn tem é menor
-        childAdder.addChild(Background1.Node)
+        /*childAdder.addChild(Background1.Node)
         childAdder.addChild(Background2.Node)
         childAdder.addChild(Floor1.Node)
-        childAdder.addChild(Floor2.Node)
+        childAdder.addChild(Floor2.Node)*/
         childAdder.addChild(Nerd.Node)
     }
     func Update()
