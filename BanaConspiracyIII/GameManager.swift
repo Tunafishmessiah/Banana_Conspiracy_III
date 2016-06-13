@@ -72,7 +72,12 @@ class GameManager {
     
     public func DoAttack(bAttackRight : Bool)
     {
-        let Direction : CGFloat = bAttackRight ? -1 : 1
+        if (Enemies.count <= 0)
+        {
+            return
+        }
+        
+        let Direction : CGFloat = (bAttackRight ? -1 : 1)
         var EnemiesInDir = [Enemy]()
         for Index in 0 ..< Enemies.count
         {
@@ -88,10 +93,36 @@ class GameManager {
         }
         
         var ClosestEnemy : Enemy = Enemies[0]
+        var ClosestEnemyDistance : CGFloat = abs(Enemies[0].Node.position.x - self.ScreenSize.x / 2)
         for Index in 0 ..< EnemiesInDir.count
         {
-            //if (EnemiesInDir[Index].Node.position.x )
+            let DistanceToNerd : CGFloat = abs(EnemiesInDir[Index].Node.position.x - self.ScreenSize.x / 2)
+            if (DistanceToNerd < ClosestEnemyDistance)
+            {
+                ClosestEnemy = EnemiesInDir[Index]
+                ClosestEnemyDistance = DistanceToNerd
+            }
         }
+        
+        MoveScene(bAttackRight, min(100, ClosestEnemyDistance))
+        
+    }
+    
+    func MoveScene(bAttackRight : Bool, _ DistanceToMove : CGFloat)
+    {
+        if (Enemies.count > 0)
+        {
+            for Index in 0 ..< Enemies.count
+            {
+                Enemies[Index].moveEnemies(bAttackRight, distanceToMove: DistanceToMove)
+            }
+        }
+        
+        Floor1.MoveFloors(bAttackRight, DistanceToMove)
+        Floor2.MoveFloors(bAttackRight, DistanceToMove)
+        
+        Background1.MoveBackground(bAttackRight, DistanceToMove)
+        Background2.MoveBackground(bAttackRight, DistanceToMove)
     }
     
 }
