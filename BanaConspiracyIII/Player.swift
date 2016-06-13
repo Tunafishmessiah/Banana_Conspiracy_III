@@ -18,11 +18,16 @@ class Player : Pawn
     func Player(screenSize : CGSize)
     {
         
-        PlayerSprites.append(SKTexture(imageNamed: "Player0"))
-        PlayerSprites.append(SKTexture(imageNamed: "Player1"))
+        PlayerSprites.append(SKTexture(imageNamed: "Nerd0"))//Idle
+        PlayerSprites.append(SKTexture(imageNamed: "Nerd1"))//Damaged
+        PlayerSprites.append(SKTexture(imageNamed: "Nerd2"))//dead
+        PlayerSprites.append(SKTexture(imageNamed: "Nerd3"))//FlyKick
+        PlayerSprites.append(SKTexture(imageNamed: "Nerd4"))//Headbutt
+        PlayerSprites.append(SKTexture(imageNamed: "Nerd5"))//PalmHit
+        PlayerSprites.append(SKTexture(imageNamed: "Nerd6"))//Kick
         self.Node.texture = PlayerSprites[0]
         //
-        self.Pawn("Player", CGPoint(x: 1, y: 1), false, 10)
+        self.Pawn("Nerd0", CGPoint(x: 1, y: 1), false, 10)
         //
         self.Node.position = CGPoint(x: screenSize.width/2 - self.Node.size.width/2 , y: screenSize.height/10 + self.Node.size.height)
         self.Resting = true
@@ -70,4 +75,4 @@ class Player : Pawn
             }
         }
     }
-}
+}	

@@ -20,11 +20,11 @@ class Enemy : Pawn
     func Enemy( screenSize : CGPoint, rightScreenSide : Bool)
     {
         //They will be walking always, soo we'll just have 2 sprites of him walking
-        EnemySprites.append(SKTexture(imageNamed:"Player0")) //"ICUP00"))//right leg front
-        EnemySprites.append(SKTexture(imageNamed:"Player0")) //"ICUP01"))//left leg front
-        EnemySprites.append(SKTexture(imageNamed:"Player0")) //"ICUP02"))//attack
+        EnemySprites.append(SKTexture(imageNamed:"ICUP0")) //right leg front
+        EnemySprites.append(SKTexture(imageNamed:"ICUP1")) //left leg front
+        EnemySprites.append(SKTexture(imageNamed:"ICUP2")) //attack
         
-        self.Pawn("ICUP", CGPointMake(1,1),true,1)
+        self.Pawn("ICUP0", CGPointMake(1,1),true,1)
         
         //como as imagens estão todas viradas para a direita
         
@@ -33,21 +33,20 @@ class Enemy : Pawn
             //virar o men para o outro lado
             self.Node.xScale = -1
         }
-        
-        
     }
     
     public func Update(playerPos : CGPoint)
     {
+        
+        if(self.HP > 0)
+        {
         //if the player is near enough, he will attack instead of doing anything else
         //a value that i think it's right, maybe self.size.width/2 + player.size.width/2 wouldn't be bad too
-        var dist : CGFloat = playerPos.x - self.Node.position.x
         
-        //Verificar ditancia ao jogador
-        if(dist < 0)
-        {
-            dist *= -1
-        }
+        var dist : CGFloat = abs(playerPos.x - self.Node.position.x)
+        
+        self.attackTimer -= 1
+        
         if(dist < self.Node.size.width)
         {
             //Tirar o timer para saber se ele ataca ou nao
@@ -55,12 +54,9 @@ class Enemy : Pawn
             {
                 self.attackTimer = 20
                 
-                
                 //to make him attack
-                /*//Activate when you have sprites!!
-                //self.Node.texture = EnemySprites[2]
-                //self.attackTimer = 20
-                */
+                //Activate when you have sprites!!
+                self.Node.texture = EnemySprites[2]
                 
             }
         }
@@ -80,6 +76,7 @@ class Enemy : Pawn
             }
         }
         
+        
         self.SwitchPosition -= 1
             
         if(self.SwitchPosition <= 0)
@@ -87,13 +84,17 @@ class Enemy : Pawn
             if(self.Node.texture == self.EnemySprites[0])
             {
                 self.Node.texture = self.EnemySprites[1]
+                }
+                else
+                {
+                    self.Node.texture = self.EnemySprites[0]
+                }
+                self.SwitchPosition = 20
             }
-            else
-            {
-                self.Node.texture = self.EnemySprites[0]
-            }
-            self.SwitchPosition = 20
         }
+        
+        
+        //
     }
     
     public func moveEnemies(attackRight : Bool, distanceToMove :CGFloat)

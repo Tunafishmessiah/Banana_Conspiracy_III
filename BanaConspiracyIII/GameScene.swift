@@ -23,6 +23,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
     {
+        let touch = touches[touches.startIndex].locationInView(self.inputView)
+        
+        touch.x < self.size.width/2 ? gameManager.DoAttack(false) : gameManager.DoAttack(true)
+        
         
     }
    

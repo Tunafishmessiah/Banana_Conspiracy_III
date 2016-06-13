@@ -92,8 +92,8 @@ class GameManager {
             return
         }
         
-        var ClosestEnemy : Enemy = Enemies[0]
-        var ClosestEnemyDistance : CGFloat = abs(Enemies[0].Node.position.x - self.ScreenSize.x / 2)
+        var ClosestEnemy : Enemy = EnemiesInDir[0]
+        var ClosestEnemyDistance : CGFloat = abs(EnemiesInDir[0].Node.position.x - self.ScreenSize.x / 2)
         for Index in 0 ..< EnemiesInDir.count
         {
             let DistanceToNerd : CGFloat = abs(EnemiesInDir[Index].Node.position.x - self.ScreenSize.x / 2)
