@@ -31,7 +31,8 @@ class Player : Pawn
         
     }
     
-    public func Attack(attackRight : Bool, moveFloor : Floor) {
+    public func Attack(attackRight : Bool)
+    {
         AttackTimer = 20
         Resting = false
         

@@ -8,7 +8,8 @@
 
 import SpriteKit
 
-class GameScene: SKScene, SKPhysicsContactDelegate {
+class GameScene: SKScene, SKPhysicsContactDelegate
+{
     
     public var gameManager = GameManager()
     
@@ -25,6 +26,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
    
-    override func update(currentTime: CFTimeInterval) {
+    override func update(currentTime: CFTimeInterval)
+    {
+        
     }
 }

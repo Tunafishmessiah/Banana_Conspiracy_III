@@ -41,6 +41,7 @@ public class Actor
             self.Body.collisionBitMask = HitCategory.enemy
         }
     }
+    
     public func Update()
     {
     }
