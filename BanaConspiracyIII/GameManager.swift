@@ -105,7 +105,8 @@ class GameManager {
         }
         
         MoveScene(bAttackRight, min(100, ClosestEnemyDistance))
-        
+        ClosestEnemy.DamageHP()
+        ClosestEnemy.Die()
     }
     
     func MoveScene(bAttackRight : Bool, _ DistanceToMove : CGFloat)
