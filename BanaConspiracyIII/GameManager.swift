@@ -70,4 +70,28 @@ class GameManager {
         }
     }
     
+    public func DoAttack(bAttackRight : Bool)
+    {
+        let Direction : CGFloat = bAttackRight ? -1 : 1
+        var EnemiesInDir = [Enemy]()
+        for Index in 0 ..< Enemies.count
+        {
+            if (Enemies[Index].Node.xScale  == Direction)
+            {
+                EnemiesInDir.append(Enemies[Index])
+            }
+        }
+        
+        if (EnemiesInDir.count <= 0)
+        {
+            return
+        }
+        
+        var ClosestEnemy : Enemy = Enemies[0]
+        for Index in 0 ..< EnemiesInDir.count
+        {
+            //if (EnemiesInDir[Index].Node.position.x )
+        }
+    }
+    
 }
