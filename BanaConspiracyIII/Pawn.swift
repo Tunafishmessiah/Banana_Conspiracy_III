@@ -24,6 +24,8 @@ class Pawn : Actor
         self.IsDead = false
         
         self.Actor(texture, scale)
+        self.MakeThingsCollide(enemy)
+        
     }
     
     public func Attack()

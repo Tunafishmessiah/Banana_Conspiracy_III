@@ -18,7 +18,7 @@ class GameManager {
     
     //esta variavel vai servir para mover tudo na cena conforme o que o jogador andar com cada ataque.
     //Como tudo tem de se mover a mesma velocidade, essa variavel é controlada aqui
-    var Speed = CGFloat()
+    var Speed : CGFloat = 10
     
     var ScreenSize = CGPoint()
     
@@ -27,8 +27,7 @@ class GameManager {
     {
         
         self.ScreenSize = screenSize
-        // O background e o chão vão andar a velocidades diferentes para dar um efeito mais engraçado
-        //mas recebem o mesmo valor de Speed
+        // O chão vai andar a velocidade diferente para dar um efeito mais engraçado
         self.Background1.Background(self.Speed)
         self.Background2.Background(self.Speed)
         
@@ -38,8 +37,12 @@ class GameManager {
         //Quanto maior o nivel, mais inimigos vai dar spawn
         //Ou seja, o delay que o spawn tem é menor
         
+    }
+    func Update()
+    {
+        var aux : Int = Enemies.count
         
-        
+        for aux
     }
     
 }

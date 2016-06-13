@@ -8,9 +8,12 @@
 
 import SpriteKit
 
-class GameScene: SKScene, SKPhysicsContactDelegate
-{
+class GameScene: SKScene, SKPhysicsContactDelegate {
+    
+    public var gameManager = GameManager()
+    
     override func didMoveToView(view: SKView) {
+        gameManager.GameManager(<#T##level: Int##Int#>, screenSize: <#T##CGPoint#>)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

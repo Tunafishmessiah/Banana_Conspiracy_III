@@ -15,26 +15,22 @@ class Background : Actor
     
     func Background(speed : CGFloat)
     {
-        //the speed value that we get here should be the same as the floor,
-        //soo we don't need to go trought the full code everytime we need to change it
-        
-        
-        self.Speed = speed/3
+        self.Speed = speed
         
         self.Actor("Background", CGPointMake(1,1))
-        
     }
     
-    func MoveBackground (moveRight : Bool)
+    func MoveBackground (moveRight : Bool, _ distanceToMove : CGFloat)
     {
         if(moveRight)
         {
          //If Nerd is attacking right, that means that everything must move left to seem more real
-            self.Node.position = CGPoint(x: self.Node.position.x - self.Speed, y: self.Node.position.y)
+            self.Node.position = CGPoint(x: self.Node.position.x - (distanceToMove+self.Speed), y: self.Node.position.y)
         }
         else
         {
             //if he attacks in the oposite direction, everything moves to the right side
+                self.Node.position = CGPoint(x: self.Node.position.x + (distanceToMove+self.Speed), y:self.Node.position.y)
         }
         
         

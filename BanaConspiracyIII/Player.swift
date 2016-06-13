@@ -21,9 +21,13 @@ class Player : Pawn
         PlayerSprites.append(SKTexture(imageNamed: "Player0"))
         PlayerSprites.append(SKTexture(imageNamed: "Player1"))
         self.Node.texture = PlayerSprites[0]
+        //
         self.Pawn("Player", CGPoint(x: 1, y: 1), false, 10)
+        //
         self.Node.position = CGPoint(x: screenSize.width/2 - self.Node.size.width/2 , y: screenSize.height/10 + self.Node.size.height)
         self.Resting = true
+        
+        self.MakeThingsCollide(false) 
         
     }
     
