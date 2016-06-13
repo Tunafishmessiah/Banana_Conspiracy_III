@@ -16,6 +16,8 @@ class GameManager {
     var Floor1 = Floor()
     var Floor2 = Floor()
     
+    var Nerd = Player()
+    
     //esta variavel vai servir para mover tudo na cena conforme o que o jogador andar com cada ataque.
     //Como tudo tem de se mover a mesma velocidade, essa variavel é controlada aqui
     var Speed : CGFloat = 10
@@ -23,7 +25,7 @@ class GameManager {
     var ScreenSize = CGPoint()
     
     
-    func GameManager( level : Int, screenSize : CGPoint)
+    func GameManager( level : Int, screenSize : CGPoint, _ childAdder : GameScene)
     {
         
         self.ScreenSize = screenSize
@@ -34,9 +36,18 @@ class GameManager {
         self.Background1.Node.position = CGPointMake(self.ScreenSize.x/2, self.ScreenSize.y/2)
         self.Background2.Node.position = CGPointMake((self.ScreenSize.x/2) + self.Background2.Node.size.width, self.ScreenSize.y/2 )
         
+        self.Floor1.Node.position = CGPointMake(self.ScreenSize.x/2, self.ScreenSize.y/2)
+        self.Floor2.Node.position = CGPointMake((self.ScreenSize.x/2) + self.Floor2.Node.size.width, self.ScreenSize.y/2 )
+        
+        Nerd.Player((childAdder.scene?.size)!)
+        
         //Quanto maior o nivel, mais inimigos vai dar spawn
         //Ou seja, o delay que o spawn tem é menor
-        
+        childAdder.addChild(Background1.Node)
+        childAdder.addChild(Background2.Node)
+        childAdder.addChild(Floor1.Node)
+        childAdder.addChild(Floor2.Node)
+        childAdder.addChild(Nerd.Node)
     }
     func Update()
     {

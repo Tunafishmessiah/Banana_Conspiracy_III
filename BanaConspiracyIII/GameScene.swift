@@ -17,7 +17,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     
     override func didMoveToView(view: SKView)
     {
-        gameManager.GameManager(self.level, screenSize: CGPointMake(self.size.width, self.size.height))
+        gameManager.GameManager(self.level, screenSize: CGPointMake(self.size.width, self.size.height), self)
         
     }
     
