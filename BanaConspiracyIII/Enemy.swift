@@ -17,18 +17,19 @@ class Enemy : Pawn
     var SwitchPosition : Int = 0
     let MovementSpeed : CGFloat = 10
     
-    func Enemy( screenSize : CGPoint, rightScreenSide : Bool)
+    func Enemy( screenSize : CGPoint)
     {
         //They will be walking always, soo we'll just have 2 sprites of him walking
         EnemySprites.append(SKTexture(imageNamed:"ICUP0")) //right leg front
         EnemySprites.append(SKTexture(imageNamed:"ICUP1")) //left leg front
         EnemySprites.append(SKTexture(imageNamed:"ICUP2")) //attack
         
-        self.Pawn("ICUP0", CGPointMake(1,1),true,1)
+        self.Pawn("ICUP0", CGPointMake(0.15,0.15),true,1)
         
         //como as imagens estão todas viradas para a direita
-        
-        if(rightScreenSide)
+        let side  = arc4random_uniform(2)
+
+        if(side == 1)
         {
             //virar o men para o outro lado
             self.Node.xScale = -1

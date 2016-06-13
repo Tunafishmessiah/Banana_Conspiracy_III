@@ -16,7 +16,7 @@ class GameManager {
     var Floor1 = Floor()
     var Floor2 = Floor()
     
-    var Nerd = Player()
+    public var Nerd = Player()
     
     //esta variavel vai servir para mover tudo na cena conforme o que o jogador andar com cada ataque.
     //Como tudo tem de se mover a mesma velocidade, essa variavel é controlada aqui
@@ -24,9 +24,16 @@ class GameManager {
     
     var ScreenSize = CGPoint()
     
+    var EnemyTimerStarter = 1000 //frames para ter um novo inimigo
+    var EnemyTimer = 0
+    var Level = Int()
+    
+    //var gameScene  = GameScene()
     
     func GameManager( level : Int, screenSize : CGPoint, _ childAdder : GameScene)
     {
+        self.Level = level
+        //self.gameScene = childAdder
         
         self.ScreenSize = screenSize
         // O chão vai andar a velocidade diferente para dar um efeito mais engraçado
@@ -39,7 +46,9 @@ class GameManager {
         self.Floor1.Node.position = CGPointMake(self.ScreenSize.x/2, self.ScreenSize.y/2)
         self.Floor2.Node.position = CGPointMake((self.ScreenSize.x/2) + self.Floor2.Node.size.width, self.ScreenSize.y/2 )
         
-        Nerd.Player((childAdder.scene?.size)!)
+        
+        Nerd.Player(screenSize)
+        childAdder.addChild(Nerd.Node)
         
         //Quanto maior o nivel, mais inimigos vai dar spawn
         //Ou seja, o delay que o spawn tem é menor
@@ -47,33 +56,47 @@ class GameManager {
         childAdder.addChild(Background2.Node)
         childAdder.addChild(Floor1.Node)
         childAdder.addChild(Floor2.Node)*/
-        childAdder.addChild(Nerd.Node)
     }
     func Update()
     {
         UpdateEnemies()
-        //O chao, o background e o player nao precisam de update, pois sao estaticos
+        Nerd.Update()
+        //O chao e o background nao precisam de update, pois sao estaticos
     
     }
     
     func UpdateEnemies()
     {
+        if(abs(EnemyTimer * (1/self.Level)) <= 0 )
+        {
+            let newEnemy = Enemy()
+            newEnemy.Enemy(ScreenSize)
+            
+            //self.gameScene.addChild(newEnemy.Node)
+            
+            Enemies.append(newEnemy)
+            
+        }
+        
+        
         //Ve o index de quais inimigos estao mortos
         var deletedEnemies = [Int]()
-        for aux in 0 ... Enemies.count-1
+        if(deletedEnemies.count > 0)
         {
-            if (Enemies[aux].HP <= 0)
+            for aux in 0 ... Enemies.count-1
             {
-                deletedEnemies.append(aux)
+                if (Enemies[aux].HP <= 0)
+                {
+                    deletedEnemies.append(aux)
+                }
+            }
+        
+            //Elimina-os da cena
+            for deleteIndex in deletedEnemies
+            {
+                Enemies.removeAtIndex(deleteIndex)
             }
         }
-        
-        //Elimina-os da cena
-        for deleteIndex in deletedEnemies
-        {
-            Enemies.removeAtIndex(deleteIndex)
-        }
-        
         //Dá update aos vivos
         for enemy in Enemies
         {
@@ -82,6 +105,13 @@ class GameManager {
     }
     
     public func DoAttack(bAttackRight : Bool)
+    {
+        MinionsAttack(bAttackRight)
+        Nerd.Attack(bAttackRight)
+        
+    }
+    
+    func MinionsAttack(bAttackRight : Bool)
     {
         if (Enemies.count <= 0)
         {

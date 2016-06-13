@@ -15,7 +15,7 @@ class Player : Pawn
     var PlayerSprites : [SKTexture] = []
     var Resting = Bool()
     
-    func Player(screenSize : CGSize)
+    func Player(screenSize : CGPoint)
     {
         
         PlayerSprites.append(SKTexture(imageNamed: "Nerd0"))//Idle
@@ -26,11 +26,14 @@ class Player : Pawn
         PlayerSprites.append(SKTexture(imageNamed: "Nerd5"))//PalmHit
         PlayerSprites.append(SKTexture(imageNamed: "Nerd6"))//Kick
         self.Node.texture = PlayerSprites[0]
+        
         //
-        self.Pawn("Nerd0", CGPoint(x: 1, y: 1), false, 10)
+        
+        self.Pawn("Nerd0", CGPoint(x: 0.15, y: 0.15), false, 10)
+        
         //
-        self.Node.position = CGPoint(x: screenSize.width/2 - self.Node.size.width/2 , y: screenSize.height/10 + self.Node.size.height)
-        self.Resting = true
+        
+        self.Node.position = CGPoint(x: screenSize.x/2, y: screenSize.y/10 + (2*self.Node.size.height)/3)
         
         self.MakeThingsCollide(false) 
         
@@ -41,10 +44,15 @@ class Player : Pawn
         AttackTimer = 20
         Resting = false
         
-        //Escolher entre os diferentes ataques, sendo que o numero dentro do
-        //random deve ser NumAtaques - 1
-        let nextAttack = arc4random_uniform(4)
-        self.Node.texture = PlayerSprites[2 + Int(nextAttack)]
+        //Escolher entre os diferentes ataques
+        
+        var nextAttack = arc4random_uniform(4)
+        while self.Node.texture == PlayerSprites[3+Int(nextAttack)]
+        {
+            nextAttack = arc4random_uniform(4)
+        }
+        self.Node.texture = PlayerSprites[3 + Int(nextAttack)]
+        
         
         //Verifica se o jogador ja está virado para o lado e vira-o se não estiver
         if !attackRight && self.Node.xScale > 0
@@ -55,8 +63,6 @@ class Player : Pawn
         {
             self.Node.xScale *= -1
         }
-        
-        
         //Do the random attack to the side it's clicked on
 
     }
@@ -68,9 +74,8 @@ class Player : Pawn
         }
         else
         {
-            if(!Resting)
+            if(AttackTimer<=0)
             {
-                Resting = true
                 self.Node.texture = PlayerSprites[0]
             }
         }
