@@ -14,6 +14,7 @@ class Player : Pawn
     var AttackTimer = CGFloat()
     var PlayerSprites : [SKTexture] = []
     var Resting = Bool()
+    let AttackRange = 300
     
     func Player(screenSize : CGPoint)
     {

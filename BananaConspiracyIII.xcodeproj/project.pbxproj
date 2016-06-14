@@ -234,6 +234,7 @@
 				TargetAttributes = {
 					E0D8DBC81CF49EB700115390 = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = 3AKGL48S3D;
 					};
 					E0D8DBE11CF49EB700115390 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -438,10 +439,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BanaConspiracyIII/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Order-of-the-Banana.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = BananaConspiracyIII;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -450,10 +454,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BanaConspiracyIII/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Order-of-the-Banana.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = BananaConspiracyIII;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

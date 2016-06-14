@@ -42,6 +42,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
    
     override func update(currentTime: CFTimeInterval)
     {
-        gameManager.Update()
+        gameManager.Update(self)
     }
 }

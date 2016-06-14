@@ -64,7 +64,7 @@ class Enemy : Pawn
         //Se nao estiver perto do jogador, deve andar para perto dele
         else
         {
-            if(self.Node.xScale < 0)
+            if(self.Node.xScale > 0)
             {//Significa que esta do lado direito, ou seja, tem de vir para o esquerdo
                 
                 self.Node.position.x -= self.MovementSpeed
@@ -90,7 +90,7 @@ class Enemy : Pawn
                 {
                     self.Node.texture = self.EnemySprites[0]
                 }
-                self.SwitchPosition = 20
+                self.SwitchPosition = 8
             }
         }
         

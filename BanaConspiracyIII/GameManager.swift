@@ -24,7 +24,7 @@ class GameManager {
     
     var ScreenSize = CGPoint()
     
-    var EnemyTimerStarter = 1000 //frames para ter um novo inimigo
+    var EnemyTimerStarter = 30 //frames para ter um novo inimigo
     var EnemyTimer = 0
     var Level = Int()
     
@@ -57,25 +57,30 @@ class GameManager {
         childAdder.addChild(Floor1.Node)
         childAdder.addChild(Floor2.Node)*/
     }
-    func Update()
+    func Update(childAdder : GameScene)
     {
-        UpdateEnemies()
+        UpdateEnemies(childAdder)
         Nerd.Update()
         //O chao e o background nao precisam de update, pois sao estaticos
     
     }
     
-    func UpdateEnemies()
+    func UpdateEnemies(childAdder : GameScene)
     {
         if(abs(EnemyTimer * (1/self.Level)) <= 0 )
         {
             let newEnemy = Enemy()
             newEnemy.Enemy(ScreenSize)
-            
-            //self.gameScene.addChild(newEnemy.Node)
-            
+            let SpawnX : CGFloat = (newEnemy.Node.xScale < 0 ? 0 : self.ScreenSize.x)
+            newEnemy.Node.position = CGPoint(x: SpawnX, y: self.ScreenSize.y/10 + (2 * newEnemy.Node.size.height)/3)
+            childAdder.addChild(newEnemy.Node)
             Enemies.append(newEnemy)
             
+            EnemyTimer = EnemyTimerStarter
+        }
+        else
+        {
+            EnemyTimer--
         }
         
         
@@ -100,7 +105,7 @@ class GameManager {
         //Dá update aos vivos
         for enemy in Enemies
         {
-            enemy.Update()
+            enemy.Update(Nerd.Node.position)
         }
     }
     
@@ -118,11 +123,11 @@ class GameManager {
             return
         }
         
-        let Direction : CGFloat = (bAttackRight ? -1 : 1)
+        let Direction : CGFloat = (bAttackRight ? 1 : -1)
         var EnemiesInDir = [Enemy]()
         for Index in 0 ..< Enemies.count
         {
-            if (Enemies[Index].Node.xScale  == Direction)
+            if (Enemies[Index].Node.xScale  == Direction && Enemies[Index].HP > 0)
             {
                 EnemiesInDir.append(Enemies[Index])
             }
@@ -145,9 +150,12 @@ class GameManager {
             }
         }
         
-        MoveScene(bAttackRight, min(100, ClosestEnemyDistance))
-        ClosestEnemy.DamageHP()
-        ClosestEnemy.Die()
+        MoveScene(bAttackRight, min(CGFloat(Nerd.AttackRange), ClosestEnemyDistance - Nerd.Node.size.width / 2))
+        if (ClosestEnemyDistance <= CGFloat(Nerd.AttackRange))
+        {
+            ClosestEnemy.DamageHP()
+            ClosestEnemy.Die()
+        }
     }
     
     func MoveScene(bAttackRight : Bool, _ DistanceToMove : CGFloat)
