@@ -34,6 +34,7 @@ class Enemy : Pawn
             //virar o men para o outro lado
             self.Node.xScale = -1
         }
+        self.Node.zPosition = 2
     }
     
     public func Update(playerPos : CGPoint)

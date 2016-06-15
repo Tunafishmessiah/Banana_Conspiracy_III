@@ -36,7 +36,10 @@ class Player : Pawn
         
         self.Node.position = CGPoint(x: screenSize.x/2, y: screenSize.y/10 + (2*self.Node.size.height)/3)
         
-        self.MakeThingsCollide(false) 
+        self.MakeThingsCollide(false)
+        
+        
+        self.Node.zPosition = 3
         
     }
     

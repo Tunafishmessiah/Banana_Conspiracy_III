@@ -18,6 +18,8 @@ class Background : Actor
         self.Speed = speed
         
         self.Actor("Background", CGPointMake(1,1))
+        
+        self.Node.zPosition = 0
     }
     
     func MoveBackground (moveRight : Bool, _ distanceToMove : CGFloat)
@@ -32,8 +34,6 @@ class Background : Actor
             //if he attacks in the oposite direction, everything moves to the right side
                 self.Node.position = CGPoint(x: self.Node.position.x + (distanceToMove+self.Speed), y:self.Node.position.y)
         }
-        
-        
     }
     
 }

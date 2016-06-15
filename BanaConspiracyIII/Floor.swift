@@ -13,11 +13,11 @@ class Floor : Actor
 {
     var Speed = CGFloat()
     
-    func Floor (speed : CGFloat)
+    
+    func Floor ()
     {
-        self.Speed = speed
-        
         self.Actor("Floor", CGPointMake(1,1))
+        self.Node.zPosition = 1
     }
     
     public func MoveFloors(moveRight : Bool, _ distanceToMove : CGFloat)
@@ -34,6 +34,4 @@ class Floor : Actor
             self.Node.position = CGPoint(x: self.Node.position.x + distanceToMove,y: self.Node.position.y)
         }
     }
-    
-    
 }

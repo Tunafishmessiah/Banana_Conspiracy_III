@@ -13,6 +13,7 @@ class GameManager {
     var Background1 = Background()
     var Background2 = Background()
     
+    var Floor0 = Floor()
     var Floor1 = Floor()
     var Floor2 = Floor()
     
@@ -24,7 +25,7 @@ class GameManager {
     
     var ScreenSize = CGPoint()
     
-    var EnemyTimerStarter = 30 //frames para ter um novo inimigo
+    var EnemyTimerStarter = 100 //frames para ter um novo inimigo
     var EnemyTimer = 0
     var Level = Int()
     
@@ -43,12 +44,25 @@ class GameManager {
         self.Background1.Node.position = CGPointMake(self.ScreenSize.x/2, self.ScreenSize.y/2)
         self.Background2.Node.position = CGPointMake((self.ScreenSize.x/2) + self.Background2.Node.size.width, self.ScreenSize.y/2 )
         
-        self.Floor1.Node.position = CGPointMake(self.ScreenSize.x/2, self.ScreenSize.y/2)
-        self.Floor2.Node.position = CGPointMake((self.ScreenSize.x/2) + self.Floor2.Node.size.width, self.ScreenSize.y/2 )
-        
         
         Nerd.Player(screenSize)
         childAdder.addChild(Nerd.Node)
+        
+        
+        self.Floor0.Floor()
+        self.Floor0.Node.position = CGPointMake(self.ScreenSize.x/2,self.Nerd.Node.position.y - self.Nerd.Node.size.height/2)
+        childAdder.addChild(self.Floor0.Node)
+        
+        self.Floor1.Floor()
+        self.Floor1.Node.position = CGPointMake(self.ScreenSize.x + self.ScreenSize.x/2, self.Nerd.Node.position.y - self.Nerd.Node.size.height/2)
+        childAdder.addChild(self.Floor1.Node)
+        
+        self.Floor2.Floor()
+        self.Floor2.Node.position = CGPointMake(self.ScreenSize.x + 2 + self.ScreenSize.x/2, self.Nerd.Node.position.y - self.Nerd.Node.size.height/2)
+        childAdder.addChild(self.Floor2.Node)
+        
+        print("POSITION : \(self.Floor0.Node.position.y)")
+        
         
         //Quanto maior o nivel, mais inimigos vai dar spawn
         //Ou seja, o delay que o spawn tem é menor
@@ -60,7 +74,7 @@ class GameManager {
     func Update(childAdder : GameScene)
     {
         UpdateEnemies(childAdder)
-        Nerd.Update()
+        self.Nerd.Update()
         //O chao e o background nao precisam de update, pois sao estaticos
     
     }
@@ -118,6 +132,7 @@ class GameManager {
     
     func MinionsAttack(bAttackRight : Bool)
     {
+        
         if (Enemies.count <= 0)
         {
             return
@@ -125,6 +140,7 @@ class GameManager {
         
         let Direction : CGFloat = (bAttackRight ? 1 : -1)
         var EnemiesInDir = [Enemy]()
+        
         for Index in 0 ..< Enemies.count
         {
             if (Enemies[Index].Node.xScale  == Direction && Enemies[Index].HP > 0)
@@ -133,13 +149,14 @@ class GameManager {
             }
         }
         
-        if (EnemiesInDir.count <= 0)
+        var ClosestEnemyDistance : CGFloat = CGFloat(self.Nerd.AttackRange)
+        
+        if(EnemiesInDir.count != 0)
         {
-            return
-        }
         
         var ClosestEnemy : Enemy = EnemiesInDir[0]
-        var ClosestEnemyDistance : CGFloat = abs(EnemiesInDir[0].Node.position.x - self.ScreenSize.x / 2)
+        ClosestEnemyDistance = abs(EnemiesInDir[0].Node.position.x - self.ScreenSize.x / 2)
+            
         for Index in 0 ..< EnemiesInDir.count
         {
             let DistanceToNerd : CGFloat = abs(EnemiesInDir[Index].Node.position.x - self.ScreenSize.x / 2)
@@ -150,12 +167,14 @@ class GameManager {
             }
         }
         
-        MoveScene(bAttackRight, min(CGFloat(Nerd.AttackRange), ClosestEnemyDistance - Nerd.Node.size.width / 2))
         if (ClosestEnemyDistance <= CGFloat(Nerd.AttackRange))
         {
             ClosestEnemy.DamageHP()
             ClosestEnemy.Die()
         }
+        }
+        
+        MoveScene(bAttackRight, min(CGFloat(Nerd.AttackRange), ClosestEnemyDistance - Nerd.Node.size.width / 2))
     }
     
     func MoveScene(bAttackRight : Bool, _ DistanceToMove : CGFloat)
@@ -168,11 +187,44 @@ class GameManager {
             }
         }
         
-        Floor1.MoveFloors(bAttackRight, DistanceToMove)
-        Floor2.MoveFloors(bAttackRight, DistanceToMove)
+        MoveFloors(bAttackRight, DistanceToMove)
+        
+        
         
         Background1.MoveBackground(bAttackRight, DistanceToMove)
         Background2.MoveBackground(bAttackRight, DistanceToMove)
+    }
+    func MoveFloors(bAttackRight : Bool, _ DistanceToMove : CGFloat)
+    {
+        Floor0.MoveFloors(bAttackRight, DistanceToMove)
+        Floor1.MoveFloors(bAttackRight, DistanceToMove)
+        Floor2.MoveFloors(bAttackRight, DistanceToMove)
+        
+        var aux = [CGFloat]()
+        
+        aux.append(abs(Floor0.Node.position.x - self.Nerd.Node.position.x))
+        aux.append(abs(Floor1.Node.position.x - self.Nerd.Node.position.x))
+        aux.append(abs(Floor2.Node.position.x - self.Nerd.Node.position.x))
+        
+        
+        if(aux[0] <= aux[1] && aux[0] <= aux[2])
+        {
+            self.Floor1.Node.position.x = self.Floor0.Node.position.x + self.Floor0.Node.size.width - 1
+            self.Floor2.Node.position.x = self.Floor0.Node.position.x - self.Floor0.Node.size.width  + 1
+        }
+        else if(aux[1] <= aux[0] && aux[1] <= aux[2])
+        {
+            
+            self.Floor0.Node.position.x = self.Floor1.Node.position.x + self.Floor1.Node.size.width  - 1
+            self.Floor2.Node.position.x = self.Floor1.Node.position.x - self.Floor1.Node.size.width + 1
+        }
+        else if (aux[2] <= aux[1] && aux[2] <= aux[1])
+        {
+            
+            self.Floor0.Node.position.x = self.Floor2.Node.position.x + self.Floor2.Node.size.width - 1
+            self.Floor1.Node.position.x = self.Floor2.Node.position.x - self.Floor2.Node.size.width + 1
+        }
+        
     }
     
 }

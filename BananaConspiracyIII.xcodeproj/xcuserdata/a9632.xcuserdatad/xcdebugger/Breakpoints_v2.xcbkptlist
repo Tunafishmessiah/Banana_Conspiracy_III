@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BanaConspiracyIII/Player.swift"
-            timestampString = "487596660.194791"
+            timestampString = "487696076.795136"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "Attack(_:)"
             landmarkType = "5">
          </BreakpointContent>
