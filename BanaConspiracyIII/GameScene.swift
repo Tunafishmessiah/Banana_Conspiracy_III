@@ -10,38 +10,50 @@ import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate
 {
-    
+    var StartWindow = StartScreen()
     var gameManager = GameManager()
     
     var level = 1
     
-    var start = false
+    var start = true
     
     override func didMoveToView(view: SKView)
     {
-        gameManager.GameManager(self.level, screenSize: CGPointMake(self.size.width, self.size.height), self)
-        print(self.size.width/2)
-        
+        StartWindow.StartScreen(self, start: true, points: nil)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
     {
         if(self.start)
         {
-        let touch = touches[touches.startIndex].locationInView(self.inputView)
-        
-        touch.x <= self.size.height/2 ? gameManager.DoAttack(false) : gameManager.DoAttack(true)
-        print(touch.x)
+            StartWindow.Delete(self)
+            gameManager.GameManager(self.level, screenSize: CGPointMake(self.size.width, self.size.height), self)
+            self.start = false
         }
         else
         {
-            self.start = true
+            let touch = touches[touches.startIndex].locationInView(self.inputView)
+            touch.x <= self.size.height/2 ? gameManager.DoAttack(false) : gameManager.DoAttack(true)
         }
-        
     }
    
     override func update(currentTime: CFTimeInterval)
     {
-        gameManager.Update(self)
+        
+        if(!start)
+        {
+            gameManager.Update(self)
+            if(gameManager.SceneChange)
+            {
+                let aux = gameManager.Points
+                gameManager.Delete(self)
+                
+                self.removeAllChildren()
+                
+                StartWindow.StartScreen(self, start: false, points: aux)
+                start = true
+            }
+        }
+        
     }
 }

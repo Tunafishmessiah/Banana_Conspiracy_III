@@ -14,7 +14,7 @@ class Player : Pawn
     var AttackTimer = CGFloat()
     var PlayerSprites : [SKTexture] = []
     var Resting = Bool()
-    let AttackRange = 300
+    let AttackRange = 200
     
     func Player(screenSize : CGPoint)
     {
@@ -45,6 +45,8 @@ class Player : Pawn
     
     public func Attack(attackRight : Bool)
     {
+        if(self.HP > 0)
+        {
         AttackTimer = 20
         Resting = false
         
@@ -68,9 +70,20 @@ class Player : Pawn
             self.Node.xScale *= -1
         }
         //Do the random attack to the side it's clicked on
+        }
 
     }
-    override func Update() {
+    override func DamageHP()
+    {
+        
+        self.Node.texture = PlayerSprites[1]
+        self.AttackTimer = 3
+        
+        super.DamageHP()
+    }
+    override func Update()
+    {
+        
         
         if AttackTimer > 0
         {
@@ -83,5 +96,13 @@ class Player : Pawn
                 self.Node.texture = PlayerSprites[0]
             }
         }
+        
     }
+    
+    override func Die()
+    {
+        self.Node.texture = PlayerSprites[2]
+        super.Die()
+    }
+    
 }	

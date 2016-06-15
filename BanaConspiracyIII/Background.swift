@@ -27,12 +27,12 @@ class Background : Actor
         if(moveRight)
         {
          //If Nerd is attacking right, that means that everything must move left to seem more real
-            self.Node.position = CGPoint(x: self.Node.position.x - (distanceToMove+self.Speed), y: self.Node.position.y)
+            self.Node.position = CGPoint(x: self.Node.position.x - (distanceToMove-self.Speed), y: self.Node.position.y)
         }
         else
         {
             //if he attacks in the oposite direction, everything moves to the right side
-                self.Node.position = CGPoint(x: self.Node.position.x + (distanceToMove+self.Speed), y:self.Node.position.y)
+            self.Node.position = CGPoint(x: self.Node.position.x + (distanceToMove-self.Speed), y:self.Node.position.y)
         }
     }
     

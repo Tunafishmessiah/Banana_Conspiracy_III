@@ -24,6 +24,9 @@
 		E09A77F81D11BB5E00CB5680 /* True Survivor - Kung Fury - 8 bit Remix [Menu].mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E09A77F41D11BB5E00CB5680 /* True Survivor - Kung Fury - 8 bit Remix [Menu].mp3 */; };
 		E09A77F91D11BB5E00CB5680 /* Hit3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E09A77F51D11BB5E00CB5680 /* Hit3.mp3 */; };
 		E09A77FA1D11BB5E00CB5680 /* Hit1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E09A77F61D11BB5E00CB5680 /* Hit1.mp3 */; };
+		E09A77FC1D11CFDE00CB5680 /* StartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09A77FB1D11CFDE00CB5680 /* StartScreen.swift */; };
+		E09A77FF1D11D76200CB5680 /* MainScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = E09A77FD1D11D76200CB5680 /* MainScreen.png */; };
+		E09A78001D11D76200CB5680 /* DeathScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = E09A77FE1D11D76200CB5680 /* DeathScreen.png */; };
 		E0B199B31CF4A3B400093750 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B199B21CF4A3B400093750 /* Actor.swift */; };
 		E0B199B51CF4A7F600093750 /* Pawn.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B199B41CF4A7F600093750 /* Pawn.swift */; };
 		E0B199B71CF4B0DA00093750 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B199B61CF4B0DA00093750 /* Player.swift */; };
@@ -70,6 +73,9 @@
 		E09A77F41D11BB5E00CB5680 /* True Survivor - Kung Fury - 8 bit Remix [Menu].mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "True Survivor - Kung Fury - 8 bit Remix [Menu].mp3"; sourceTree = "<group>"; };
 		E09A77F51D11BB5E00CB5680 /* Hit3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Hit3.mp3; sourceTree = "<group>"; };
 		E09A77F61D11BB5E00CB5680 /* Hit1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Hit1.mp3; sourceTree = "<group>"; };
+		E09A77FB1D11CFDE00CB5680 /* StartScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartScreen.swift; sourceTree = "<group>"; };
+		E09A77FD1D11D76200CB5680 /* MainScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MainScreen.png; sourceTree = "<group>"; };
+		E09A77FE1D11D76200CB5680 /* DeathScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DeathScreen.png; sourceTree = "<group>"; };
 		E0B199B21CF4A3B400093750 /* Actor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actor.swift; sourceTree = "<group>"; };
 		E0B199B41CF4A7F600093750 /* Pawn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pawn.swift; sourceTree = "<group>"; };
 		E0B199B61CF4B0DA00093750 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -113,6 +119,8 @@
 		E0B199B81CF4B74200093750 /* player.atlas */ = {
 			isa = PBXGroup;
 			children = (
+				E09A77FD1D11D76200CB5680 /* MainScreen.png */,
+				E09A77FE1D11D76200CB5680 /* DeathScreen.png */,
 				E09A77F31D11BB5E00CB5680 /* Guile Theme (SNES)[Game].mp3 */,
 				E09A77F41D11BB5E00CB5680 /* True Survivor - Kung Fury - 8 bit Remix [Menu].mp3 */,
 				E09A77F51D11BB5E00CB5680 /* Hit3.mp3 */,
@@ -162,6 +170,8 @@
 				E0B199B21CF4A3B400093750 /* Actor.swift */,
 				E0D8DBD01CF49EB700115390 /* GameScene.sks */,
 				E0D8DBD21CF49EB700115390 /* GameScene.swift */,
+				E0E58E881CF88EF000D118A6 /* GameManager.swift */,
+				E09A77FB1D11CFDE00CB5680 /* StartScreen.swift */,
 				E0D8DBD41CF49EB700115390 /* GameViewController.swift */,
 				E0D8DBD61CF49EB700115390 /* Main.storyboard */,
 				E0D8DBD91CF49EB700115390 /* Images.xcassets */,
@@ -170,7 +180,6 @@
 				E0B199B41CF4A7F600093750 /* Pawn.swift */,
 				E0B199B61CF4B0DA00093750 /* Player.swift */,
 				44E321C11CF7BABE00A0AD46 /* Floor.swift */,
-				E0E58E881CF88EF000D118A6 /* GameManager.swift */,
 				E0E58E8A1CF8942100D118A6 /* Enemy.swift */,
 				E0E22CD31CFD9F7A00A6EF73 /* Background.swift */,
 			);
@@ -292,6 +301,7 @@
 				E039ED2A1D0EC70E00E019CB /* Nerd0.png in Resources */,
 				E09A77FA1D11BB5E00CB5680 /* Hit1.mp3 in Resources */,
 				E039ED2C1D0EC70E00E019CB /* Nerd2.png in Resources */,
+				E09A78001D11D76200CB5680 /* DeathScreen.png in Resources */,
 				E0B199BC1CF4B74200093750 /* Player0.png in Resources */,
 				E039ED281D0EC70E00E019CB /* ICUP2.png in Resources */,
 				E0D8DBD11CF49EB700115390 /* GameScene.sks in Resources */,
@@ -304,6 +314,7 @@
 				E039ED2B1D0EC70E00E019CB /* Nerd1.png in Resources */,
 				E09A77F21D11BB4600CB5680 /* Background.png in Resources */,
 				E039ED2E1D0EC70E00E019CB /* Nerd4.png in Resources */,
+				E09A77FF1D11D76200CB5680 /* MainScreen.png in Resources */,
 				E09A77F81D11BB5E00CB5680 /* True Survivor - Kung Fury - 8 bit Remix [Menu].mp3 in Resources */,
 				E0D8DBD81CF49EB700115390 /* Main.storyboard in Resources */,
 			);
@@ -329,6 +340,7 @@
 				44E321C21CF7BABE00A0AD46 /* Floor.swift in Sources */,
 				E0B199B51CF4A7F600093750 /* Pawn.swift in Sources */,
 				E0E58E8B1CF8942100D118A6 /* Enemy.swift in Sources */,
+				E09A77FC1D11CFDE00CB5680 /* StartScreen.swift in Sources */,
 				E0E58E891CF88EF000D118A6 /* GameManager.swift in Sources */,
 				E0B199B71CF4B0DA00093750 /* Player.swift in Sources */,
 				E0B199B31CF4A3B400093750 /* Actor.swift in Sources */,

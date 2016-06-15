@@ -5,11 +5,14 @@
 
 import Foundation
 import SpriteKit
+import AVFoundation
+
 class GameManager {
     
     //Contem todos os inimigos da cena para uma gestão mais facil
     var Enemies = [Enemy]()
     
+    var Background0 = Background()
     var Background1 = Background()
     var Background2 = Background()
     
@@ -21,13 +24,24 @@ class GameManager {
     
     //esta variavel vai servir para mover tudo na cena conforme o que o jogador andar com cada ataque.
     //Como tudo tem de se mover a mesma velocidade, essa variavel é controlada aqui
-    var Speed : CGFloat = 10
+    var Speed : CGFloat = 100
     
     var ScreenSize = CGPoint()
     
     var EnemyTimerStarter = 100 //frames para ter um novo inimigo
     var EnemyTimer = 0
     var Level = Int()
+    
+    public var Points = 0
+    
+    var SceneChange = false
+    
+    var LabelLife = SKLabelNode()
+    var LabelPontos = SKLabelNode()
+    
+    var backgroundMusicPlayer = AVAudioPlayer()
+    var playerHit = AVAudioPlayer()
+    var enemyHit = AVAudioPlayer()
     
     //var gameScene  = GameScene()
     
@@ -38,12 +52,17 @@ class GameManager {
         
         self.ScreenSize = screenSize
         // O chão vai andar a velocidade diferente para dar um efeito mais engraçado
+        self.Background0.Background(self.Speed)
         self.Background1.Background(self.Speed)
         self.Background2.Background(self.Speed)
         
-        self.Background1.Node.position = CGPointMake(self.ScreenSize.x/2, self.ScreenSize.y/2)
+        self.Background0.Node.position = CGPointMake(self.ScreenSize.x/2, self.ScreenSize.y/2)
+        self.Background1.Node.position = CGPointMake((self.ScreenSize.x/2) + self.Background1.Node.size.width, self.ScreenSize.y/2 )
         self.Background2.Node.position = CGPointMake((self.ScreenSize.x/2) + self.Background2.Node.size.width, self.ScreenSize.y/2 )
-        
+    
+        childAdder.addChild(self.Background0.Node)
+        childAdder.addChild(self.Background1.Node)
+        childAdder.addChild(self.Background2.Node)
         
         Nerd.Player(screenSize)
         childAdder.addChild(Nerd.Node)
@@ -61,20 +80,64 @@ class GameManager {
         self.Floor2.Node.position = CGPointMake(self.ScreenSize.x + 2 + self.ScreenSize.x/2, self.Nerd.Node.position.y - self.Nerd.Node.size.height/2)
         childAdder.addChild(self.Floor2.Node)
         
-        print("POSITION : \(self.Floor0.Node.position.y)")
+        
+        LabelLife = SKLabelNode(fontNamed: "Chalkduster")
+        LabelLife.fontColor = SKColor.redColor()
+        LabelLife.text = "Life >> \(Nerd.HP)"
+        LabelLife.fontSize = 25
+        LabelLife.zPosition = 4
+        LabelLife.position = CGPoint(x: ScreenSize.x/2 - 375, y: screenSize.y - 200)
+        childAdder.addChild(LabelLife)
+        
+        LabelPontos = SKLabelNode(fontNamed: "Chalkduster")
+        LabelPontos.fontColor = SKColor.greenColor()
+        LabelPontos.text = "Points >> \(self.Points)"
+        LabelPontos.fontSize = 30
+        LabelPontos.position = CGPoint(x: screenSize.x - 275  , y: screenSize.y - 200)
+        LabelPontos.zPosition = 4
+        childAdder.addChild(LabelPontos)
+        
+        SoundsUp("Guile Theme (SNES)[Game].mp3")
         
         
-        //Quanto maior o nivel, mais inimigos vai dar spawn
-        //Ou seja, o delay que o spawn tem é menor
-        /*childAdder.addChild(Background1.Node)
-        childAdder.addChild(Background2.Node)
-        childAdder.addChild(Floor1.Node)
-        childAdder.addChild(Floor2.Node)*/
     }
+    
     func Update(childAdder : GameScene)
     {
         UpdateEnemies(childAdder)
-        self.Nerd.Update()
+        
+        var damage = false
+        for enemy in self.Enemies
+        {
+            if(enemy.attackTimer == 30 && Nerd.HP > 0)
+            {
+                damage = true
+            }
+        }
+        
+        if(damage)
+        {
+            enemyHitMake()
+            Nerd.DamageHP()
+            if(self.Nerd.HP == 0)
+            {
+                self.Nerd.Die()
+            }
+        }
+
+        if(Nerd.HP > 0)
+        {
+            self.Nerd.Update()
+        }
+        
+        
+        if(Nerd.IsDead)
+        {
+            SceneChange = true
+        }
+        
+        LabelLife.text = "Life >> \(Nerd.HP)"
+        LabelPontos.text = "Points >> \(self.Points)"
         //O chao e o background nao precisam de update, pois sao estaticos
     
     }
@@ -125,8 +188,11 @@ class GameManager {
     
     public func DoAttack(bAttackRight : Bool)
     {
-        MinionsAttack(bAttackRight)
-        Nerd.Attack(bAttackRight)
+        if(Nerd.HP > 0)
+        {
+            MinionsAttack(bAttackRight)
+            Nerd.Attack(bAttackRight)
+        }
         
     }
     
@@ -169,8 +235,10 @@ class GameManager {
         
         if (ClosestEnemyDistance <= CGFloat(Nerd.AttackRange))
         {
+            playerHitMake()
             ClosestEnemy.DamageHP()
             ClosestEnemy.Die()
+            Points++
         }
         }
         
@@ -189,11 +257,10 @@ class GameManager {
         
         MoveFloors(bAttackRight, DistanceToMove)
         
-        
-        
-        Background1.MoveBackground(bAttackRight, DistanceToMove)
-        Background2.MoveBackground(bAttackRight, DistanceToMove)
+        MoveBackgrounds(bAttackRight, DistanceToMove)
+
     }
+    
     func MoveFloors(bAttackRight : Bool, _ DistanceToMove : CGFloat)
     {
         Floor0.MoveFloors(bAttackRight, DistanceToMove)
@@ -223,6 +290,93 @@ class GameManager {
             
             self.Floor0.Node.position.x = self.Floor2.Node.position.x + self.Floor2.Node.size.width - 1
             self.Floor1.Node.position.x = self.Floor2.Node.position.x - self.Floor2.Node.size.width + 1
+        }
+        
+    }
+    func MoveBackgrounds(bAttackRight : Bool, _ DistanceToMove : CGFloat)
+    {
+        self.Background0.MoveBackground(bAttackRight, DistanceToMove)
+        self.Background1.MoveBackground(bAttackRight, DistanceToMove)
+        self.Background2.MoveBackground(bAttackRight, DistanceToMove)
+        
+        var aux = [CGFloat]()
+        
+        aux.append(abs(self.Background0.Node.position.x - self.Nerd.Node.position.x))
+        aux.append(abs(self.Background1.Node.position.x - self.Nerd.Node.position.x))
+        aux.append(abs(self.Background2.Node.position.x - self.Nerd.Node.position.x))
+        
+        
+        if(aux[0] <= aux[1] && aux[0] <= aux[2])
+        {
+            self.Background1.Node.position.x = self.Background0.Node.position.x + self.Background0.Node.size.width - 1
+            self.Background2.Node.position.x = self.Background0.Node.position.x - self.Background0.Node.size.width  + 1
+        }
+        else if(aux[1] <= aux[0] && aux[1] <= aux[2])
+        {
+            
+            self.Background0.Node.position.x = self.Background1.Node.position.x + self.Background1.Node.size.width  - 1
+            self.Background2.Node.position.x = self.Background1.Node.position.x - self.Background1.Node.size.width + 1
+        }
+        else if (aux[2] <= aux[1] && aux[2] <= aux[1])
+        {
+            
+            self.Background0.Node.position.x = self.Background2.Node.position.x + self.Background2.Node.size.width - 1
+            self.Background1.Node.position.x = self.Background2.Node.position.x - self.Background2.Node.size.width + 1
+        }
+        
+    }
+    
+    func Delete(childAdder : GameScene)
+    {
+        backgroundMusicPlayer.stop()
+        childAdder.removeAllChildren()
+    }
+    
+    func SoundsUp(filename : String)
+    {
+        let url = NSBundle.mainBundle().URLForResource(filename, withExtension: nil)
+        guard let newURL = url else {
+            return
+        }
+        do {
+            backgroundMusicPlayer = try AVAudioPlayer(contentsOfURL: newURL)
+            backgroundMusicPlayer.numberOfLoops = -1
+            backgroundMusicPlayer.prepareToPlay()
+            backgroundMusicPlayer.play()
+        } catch let error as NSError {
+            print(error.description)
+        }
+    }
+    
+    func playerHitMake()
+    {
+        let url = NSBundle.mainBundle().URLForResource("Hit3.mp3", withExtension: nil)
+        guard let newURL = url else {
+            return
+        }
+        do {
+            playerHit = try AVAudioPlayer(contentsOfURL: newURL)
+            playerHit.numberOfLoops = 0
+            playerHit.prepareToPlay()
+            playerHit.play()
+        } catch let error as NSError {
+            print(error.description)
+        }
+        
+    }
+    func enemyHitMake()
+    {
+        let url = NSBundle.mainBundle().URLForResource("Hit1.mp3", withExtension: nil)
+        guard let newURL = url else {
+            return
+        }
+        do {
+            enemyHit = try AVAudioPlayer(contentsOfURL: newURL)
+            enemyHit.numberOfLoops = 0
+            enemyHit.prepareToPlay()
+            enemyHit.play()
+        } catch let error as NSError {
+            print(error.description)
         }
         
     }

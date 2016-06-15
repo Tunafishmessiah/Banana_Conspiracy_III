@@ -54,7 +54,7 @@ class Enemy : Pawn
             //Tirar o timer para saber se ele ataca ou nao
             if (self.attackTimer <= 0)
             {
-                self.attackTimer = 20
+                self.attackTimer = 30
                 
                 //to make him attack
                 //Activate when you have sprites!!
@@ -93,6 +93,10 @@ class Enemy : Pawn
                 }
                 self.SwitchPosition = 8
             }
+        }
+        else
+        {
+            attackTimer = 0
         }
         
         
